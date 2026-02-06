@@ -15,7 +15,7 @@ const app = express()
 // })
 // app.use(limiter)
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }))
+app.use(cors({ origin: process.env.NODE_ENV === "production" ? "https://fullstack-server-pi.vercel.app" : "http://localhost:3000", credentials: true }))
 app.use(express.json())//for req.body
 app.use(cookieParser())// for req.cookies
 app.use("/api/todo", protect, require("./routes/todo.routes.js"))
